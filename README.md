@@ -18,7 +18,7 @@ In case you would like to know more about YOCTO & How To Use It, for example how
     mkdir fsl-community-bsp
     cd fsl-community-bsp
     PATH=${PATH}:~/bin
-    repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b jethro
+    repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b dunfell
  
 ### 3) Add openrex support - create manifest 
     cd ~/fsl-community-bsp/
@@ -41,42 +41,44 @@ Copy and paste this into your Linux host machine
 ### 4) Sync repositories
     repo sync
  
-### 5) ~~Add OpenRex meta layer into BSP~~
-    ~~source openrex-setup.sh~~
- 
 # Building images
     cd ~/fsl-community-bsp/
  
 ### Currently Supported machines <machine name>
 Here is a list of 'machine names' which you can use to build OpenRex images. Use the 'machine name' based on the board you have:
  
- 
     imx6q-openrex
      
 ### Setup and Build Console image
-    cd ~/fsl-community-bsp-openrex/sources/poky
+    cd ~/fsl-community-bsp/sources/poky
     source oe-init-build-env build-openrex
     
 
 ### Include compiling vars in local.conf
-Paste the follwing vars into the file
+Paste the follwing vars into the file (check is MACHINE is duplicated with another value)
 
-    nano ~/fsl-community-bsp-openrex/sources/poky/build-openrex/conf/local.conf
+    nano ~/fsl-community-bsp/sources/poky/build-openrex/conf/local.conf
     MACHINE ??= "imx6q-openrex"
     PREFERRED_PROVIDER_virtual/kernel = "linux-openrex"
     PREFERRED_VERSION_linux-fslc = "5.4"
     PREFERRED_PROVIDER_u-boot = "u-boot-openrex"
     PREFERRED_PROVIDER_virtual/bootloader = "u-boot-openrex"
+    ACCEPT_FSL_EULA = "1"
 
 ### Add OpenRex meta layer
 Edit the following file and include these line in BBLAYERS
     
-    nano ~/fsl-community-bsp-openrex/sources/poky/build-openrex/conf/bblayers.conf
+    nano ~/fsl-community-bsp/sources/poky/build-openrex/conf/bblayers.conf
       /home/fernando/fsl-community-bsp-openrex/sources/meta-openrex \
       /home/fernando/fsl-community-bsp-openrex/sources/meta-freescale \
 
 ### Proceed to compile 
     cd ~/fsl-community-bsp-openrex/sources/poky/build-openrex/
+    bitbake core-image-base
+    
+### if errors happen 
+    bitbake -c cleanall <library with errors name>
+    bitbake <library with errors name>
     bitbake core-image-base
  
 # Creating SD card
