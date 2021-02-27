@@ -30,9 +30,9 @@ Copy and paste this into your Linux host machine
     <?xml version="1.0" encoding="UTF-8"?>
     <manifest>
      
-      <remote fetch="git://github.com/FEDEVEL" name="fedevel"/>
+      <remote fetch="git://github.com/randomnoisemaker" name="randomnoisemaker"/>
      
-      <project remote="fedevel" revision="jethro" name="meta-openrex" path="sources/meta-openrex">
+      <project remote="randomnoisemaker" revision="dunfell" name="meta-openrex" path="sources/meta-openrex">
         <copyfile src="openrex-setup.sh" dest="openrex-setup.sh"/>
       </project>
     </manifest>
@@ -41,8 +41,8 @@ Copy and paste this into your Linux host machine
 ### 4) Sync repositories
     repo sync
  
-### 5) Add OpenRex meta layer into BSP
-    source openrex-setup.sh
+### 5) ~~Add OpenRex meta layer into BSP~~
+    ~~source openrex-setup.sh~~
  
 # Building images
     cd ~/fsl-community-bsp/
@@ -54,21 +54,30 @@ Here is a list of 'machine names' which you can use to build OpenRex images. Use
     imx6q-openrex
      
 ### Setup and Build Console image
-    MACHINE=<machine name> source setup-environment build-openrex
-    MACHINE=<machine name> bitbake core-image-base
- 
-Example:
- 
- 
-    MACHINE=imx6q-openrex source setup-environment build-openrex
-    MACHINE=imx6q-openrex bitbake core-image-base
- 
-### Setup and Build Toolchain    
-    MACHINE=<machine name> bitbake core-image-base -c populate_sdk
-     
-### Setup and Build FSL GUI image
-    MACHINE=<machine name> source fsl-setup-release.sh -b build-x11 -e x11
-    MACHINE=<machine name> bitbake fsl-image-gui
+    cd ~/fsl-community-bsp-openrex/sources/poky
+    source oe-init-build-env build-openrex
+    
+
+### Include compiling vars in local.conf
+Paste the follwing vars into the file
+
+    nano ~/fsl-community-bsp-openrex/sources/poky/build-openrex/conf/local.conf
+    MACHINE ??= "imx6q-openrex"
+    PREFERRED_PROVIDER_virtual/kernel = "linux-openrex"
+    PREFERRED_VERSION_linux-fslc = "5.4"
+    PREFERRED_PROVIDER_u-boot = "u-boot-openrex"
+    PREFERRED_PROVIDER_virtual/bootloader = "u-boot-openrex"
+
+### Add OpenRex meta layer
+Edit the following file and include these line in BBLAYERS
+    
+    nano ~/fsl-community-bsp-openrex/sources/poky/build-openrex/conf/bblayers.conf
+      /home/fernando/fsl-community-bsp-openrex/sources/meta-openrex \
+      /home/fernando/fsl-community-bsp-openrex/sources/meta-freescale \
+
+### Proceed to compile 
+    cd ~/fsl-community-bsp-openrex/sources/poky/build-openrex/
+    bitbake core-image-base
  
 # Creating SD card
 Output directories and file names depend on what you build. Following example is based on running 'bitbake core-image-base':
