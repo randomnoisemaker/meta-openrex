@@ -57,11 +57,9 @@ Here is a list of 'machine names' which you can use to build OpenRex images. Use
     cd ~/fsl-community-bsp-openrex/sources/poky
     source oe-init-build-env build-openrex
     
-    ~~MACHINE=<machine name> source setup-environment build-openrex~~
-    ~~MACHINE=<machine name> bitbake core-image-base~~
 
 ### Include compiling vars in local.conf
-Paste the follwing vars into de file
+Paste the follwing vars into the file
 
     nano ~/fsl-community-bsp-openrex/sources/poky/build-openrex/conf/local.conf
     MACHINE ??= "imx6q-openrex"
