@@ -18,7 +18,7 @@ In case you would like to know more about YOCTO & How To Use It, for example how
     mkdir fsl-community-bsp
     cd fsl-community-bsp
     PATH=${PATH}:~/bin
-    repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b jethro
+    repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b dunfell
  
 ### 3) Add openrex support - create manifest 
     cd ~/fsl-community-bsp/
