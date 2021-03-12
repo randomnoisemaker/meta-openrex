@@ -74,8 +74,8 @@ Paste the follwing vars into the file
 Edit the following file and include these line in BBLAYERS
     
     nano ~/fsl-community-bsp-openrex/sources/poky/build-openrex/conf/bblayers.conf
-      /home/fernando/fsl-community-bsp-openrex/sources/meta-openrex \
-      /home/fernando/fsl-community-bsp-openrex/sources/meta-freescale \
+      /home/fernando/fsl-community-bsp/sources/meta-openrex \
+      /home/fernando/fsl-community-bsp/sources/meta-freescale \
 
 ### Proceed to compile 
     cd ~/fsl-community-bsp-openrex/sources/poky/build-openrex/
