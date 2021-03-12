@@ -83,7 +83,7 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
 SRCBRANCH = "dunfell"
-SRCREV = "43df0338f088b09c708f421900b93824176b932e"
+SRCREV = "292d30e23b186ff4dcf9b14c5587f1e63f7d0aee"
 
 # PV is defined in the base in linux-imx.inc file and uses the LINUX_VERSION definition
 # required by kernel-yocto.bbclass.
@@ -97,4 +97,4 @@ LOCALVERSION = "-imx-5.4.24-2.1.0"
 
 DEFAULT_PREFERENCE = "1"
 
-COMPATIBLE_MACHINE = "(mx6|mx7|mx8|imx6q-openrex)"
+COMPATIBLE_MACHINE = "(mx6|mx7|mx8|imx6q-openrex|imx6s-openrex)"

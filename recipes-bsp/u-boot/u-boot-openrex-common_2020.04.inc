@@ -10,7 +10,7 @@ DEPENDS += "bison-native"
 
 SRC_URI = "git://github.com/randomnoisemaker/openrex-uboot.git;branch=${SRCBRANCH}"
 
-SRCREV = "c3931878c1d63f2dd49b2572a6430fd1ae4e9a4d"
+SRCREV = "5ecf4eadfb3e8382ee2e4c566b01f7afab361b47"
 SRCBRANCH = "dunfell"
 
 PV = "v2020.04+git${SRCPV}"
