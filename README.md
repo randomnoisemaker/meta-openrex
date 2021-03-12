@@ -50,10 +50,12 @@ Copy and paste this into your Linux host machine
 ### Currently Supported machines <machine name>
 Here is a list of 'machine names' which you can use to build OpenRex images. Use the 'machine name' based on the board you have:
  
- 
+    imx6s-openrex
     imx6q-openrex
      
 ### Setup and Build Console image
+    export CROSS_COMPILE=arm-linux-gnueabihf-
+    export ARCH=arm
     cd ~/fsl-community-bsp-openrex/sources/poky
     source oe-init-build-env build-openrex
     
